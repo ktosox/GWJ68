@@ -13,6 +13,10 @@ config_version=4
 config/name="Forge"
 config/icon="res://icon.png"
 
+[autoload]
+
+GM="*res://game_manager.tscn"
+
 [display]
 
 window/size/width=1280
