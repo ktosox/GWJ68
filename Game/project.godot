@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Resource",
+"class": "TurretData",
+"language": "GDScript",
+"path": "res://turret_data.gd"
+} ]
+_global_script_class_icons={
+"TurretData": ""
+}
+
 [application]
 
 config/name="Forge"
@@ -40,7 +50,10 @@ LMB={
 
 2d_physics/layer_1="DO NOT USE"
 2d_physics/layer_2="Wall"
+2d_physics/layer_3="Player"
+2d_physics/layer_4="Player Attack"
 2d_physics/layer_5="Enemy"
+2d_physics/layer_6="Enemy Attack"
 
 [physics]
 

@@ -16,6 +16,8 @@ func _ready():
 func _process(delta):
 	if progress:
 		$Icon/TextureProgress.value += delta * 40.0
+	else:
+		$Icon/TextureProgress.value -= delta * 15.0
 	pass
 
 
