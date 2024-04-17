@@ -26,3 +26,7 @@ var bonus_range
 
 
 var tooltip_scene = preload("res://ui/turret_tooltip.tscn")
+
+
+
+

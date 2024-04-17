@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://resources/box.png" type="Texture" id=1]
+[ext_resource path="res://stuff/nail_box.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16, 16 )
+
+[node name="NailBox" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 2
+contacts_reported = 2
+contact_monitor = true
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Box" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+
+[connection signal="body_entered" from="." to="." method="_on_NailBox_body_entered"]
