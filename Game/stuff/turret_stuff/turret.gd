@@ -24,13 +24,19 @@ var cooldown = 0.0
 
 var bonus_range
 
+# enemy tracking stuff
+
+var tracked_enemy = null
+
 
 var tooltip_scene = preload("res://ui/turret_tooltip.tscn")
 
 func _process(delta):
 	battery_current += delta * charge_rate
 	battery_current = min(battery_current, battery_max)
-
+	if tracked_enemy != null:
+		$Tracker.global_position = tracked_enemy.global_position
+		$BarrelSlot.look_at($Tracker.global_position)
 
 func assemble_turret():
 	# place base
@@ -46,6 +52,14 @@ func shots_fired():
 		# call Funcref from barrel to turn it off
 	pass
 
+
+func update_tracker():
+	var possible_targets = $EnemyDetector.get_overlapping_bodies()
+	if possible_targets.size() == 0:
+		tracked_enemy = null
+		return
+	tracked_enemy = possible_targets[0]
+	pass
 
 
 
@@ -63,4 +77,18 @@ func _on_HoverBox_mouse_entered():
 
 func _on_HoverBox_mouse_exited():
 	$TurretTooltip.visible = false
+	pass # Replace with function body.
+
+
+
+func _on_EnemyDetector_body_entered(body):
+	if tracked_enemy == null:
+		update_tracker()
+	pass # Replace with function body.
+
+
+func _on_EnemyDetector_body_exited(body):
+	if body == tracked_enemy:
+		tracked_enemy = null
+		update_tracker()
 	pass # Replace with function body.

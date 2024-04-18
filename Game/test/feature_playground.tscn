@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://resources/progress_wheel.png" type="Texture" id=1]
 [ext_resource path="res://test/feature_playground.gd" type="Script" id=2]
@@ -7,14 +7,11 @@
 [ext_resource path="res://resources/dot.png" type="Texture" id=5]
 [ext_resource path="res://resources/box.png" type="Texture" id=6]
 [ext_resource path="res://resources/square.png" type="Texture" id=7]
-[ext_resource path="res://stuff/nail_box.tscn" type="PackedScene" id=8]
 [ext_resource path="res://stuff/turret_stuff/turret.tscn" type="PackedScene" id=9]
+[ext_resource path="res://stuff/enemy_spawner.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 400, 30 )
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 16, 16 )
 
 [node name="FeaturePlayground" type="Node2D"]
 script = ExtResource( 2 )
@@ -67,6 +64,7 @@ current = true
 position = Vector2( 682, -172 )
 collision_layer = 2
 collision_mask = 16
+constant_linear_velocity = Vector2( -80, 0 )
 
 [node name="Line2D" type="Line2D" parent="StaticBody2D"]
 points = PoolVector2Array( 400, 0, -400, 0 )
@@ -75,24 +73,11 @@ width = 60.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource( 1 )
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-position = Vector2( 421, -225 )
-collision_layer = 16
-collision_mask = 18
-mode = 2
-applied_force = Vector2( -80, 0 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-shape = SubResource( 2 )
-
-[node name="Box" type="Sprite" parent="RigidBody2D"]
-texture = ExtResource( 6 )
-
-[node name="NailBox" parent="." instance=ExtResource( 8 )]
-position = Vector2( 720, -358 )
+[node name="EnemySpawner" parent="." instance=ExtResource( 10 )]
+position = Vector2( 913, -269 )
 
 [node name="Turret" parent="." instance=ExtResource( 9 )]
-position = Vector2( 270, -296 )
+position = Vector2( 529, -386 )
 
 [connection signal="mouse_entered" from="Icon/TextureProgress" to="." method="_on_TextureProgress_mouse_entered"]
 [connection signal="mouse_exited" from="Icon/TextureProgress" to="." method="_on_TextureProgress_mouse_exited"]
