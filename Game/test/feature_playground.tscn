@@ -64,7 +64,7 @@ current = true
 position = Vector2( 682, -172 )
 collision_layer = 2
 collision_mask = 16
-constant_linear_velocity = Vector2( -80, 0 )
+constant_linear_velocity = Vector2( -40, 0 )
 
 [node name="Line2D" type="Line2D" parent="StaticBody2D"]
 points = PoolVector2Array( 400, 0, -400, 0 )
@@ -79,5 +79,10 @@ position = Vector2( 913, -269 )
 [node name="Turret" parent="." instance=ExtResource( 9 )]
 position = Vector2( 529, -386 )
 
+[node name="Barrel" parent="Turret/BarrelSlot" index="0"]
+can_shoot = true
+
 [connection signal="mouse_entered" from="Icon/TextureProgress" to="." method="_on_TextureProgress_mouse_entered"]
 [connection signal="mouse_exited" from="Icon/TextureProgress" to="." method="_on_TextureProgress_mouse_exited"]
+
+[editable path="Turret"]

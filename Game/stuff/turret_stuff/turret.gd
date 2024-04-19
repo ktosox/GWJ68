@@ -8,9 +8,9 @@ extends Node2D
 
 var battery_max = 100.0
 
-var battery_current = 0.0
+var battery_current = 50.0
 
-var charge_rate = 0.5 
+var charge_rate = 2.0
 
 var efficiency_discount = 0.0
 
@@ -18,7 +18,7 @@ var efficiency_discount = 0.0
 
 var damage = 0.0
 
-var cost = 0.0
+var cost = 6.0
 
 var cooldown = 0.0
 
@@ -28,37 +28,46 @@ var bonus_range
 
 var tracked_enemy = null
 
+func _ready():
+	assemble_turret()
+
 
 var tooltip_scene = preload("res://ui/turret_tooltip.tscn")
 
 func _process(delta):
 	battery_current += delta * charge_rate
 	battery_current = min(battery_current, battery_max)
-	if tracked_enemy != null:
-		$Tracker.global_position = tracked_enemy.global_position
-		$BarrelSlot.look_at($Tracker.global_position)
+	$BatteryBar.value = battery_current
+	if tracked_enemy != null and is_instance_valid(tracked_enemy):
+		$BarrelSlot.look_at(tracked_enemy.global_position)
 
 func assemble_turret():
 	# place base
 	# place barrel
+
 	# connect signal from barrel to "shots_fired"
+	$BarrelSlot/Barrel.connect("has_fired",self,"shots_fired")
 	# get Funcref from barrel for turning it on/off
 	pass
 
 func shots_fired():
 	battery_current -= cost
+
 	if battery_current < cost:
 		$EnergyChecker.start()
 		# call Funcref from barrel to turn it off
+		$BarrelSlot/Barrel.set_can_shoot(false)
 	pass
 
 
-func update_tracker():
+func update_tracked_enemy():
 	var possible_targets = $EnemyDetector.get_overlapping_bodies()
-	if possible_targets.size() == 0:
-		tracked_enemy = null
-		return
-	tracked_enemy = possible_targets[0]
+	var chosen_target = null
+	if possible_targets.size() != 0:
+		chosen_target = possible_targets[0]
+	tracked_enemy = chosen_target
+	
+	
 	pass
 
 
@@ -67,6 +76,7 @@ func _on_EnergyChecker_timeout():
 	if battery_current > cost:
 		$EnergyChecker.stop()
 		# call Funcref from barrel to turn it on
+		$BarrelSlot/Barrel.set_can_shoot(true)
 	pass # Replace with function body.
 
 
@@ -82,13 +92,13 @@ func _on_HoverBox_mouse_exited():
 
 
 func _on_EnemyDetector_body_entered(body):
-	if tracked_enemy == null:
-		update_tracker()
+	if !is_instance_valid(tracked_enemy):
+		update_tracked_enemy()
+	print(tracked_enemy)
 	pass # Replace with function body.
 
 
 func _on_EnemyDetector_body_exited(body):
 	if body == tracked_enemy:
-		tracked_enemy = null
-		update_tracker()
+		update_tracked_enemy()
 	pass # Replace with function body.
