@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ui/forge_slot.gd" type="Script" id=1]
+
+[node name="ForgeSlot" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 1 )
+accepted_data_type = "AmmoData"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 0, 200 )
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+color = Color( 0.541176, 0.501961, 0.501961, 1 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[connection signal="gui_input" from="." to="." method="_on_ForgeSlot_gui_input"]

@@ -1,6 +1,76 @@
-[gd_scene format=2]
+[gd_scene load_steps=3 format=2]
 
-[node name="ForgeWindow" type="Control"]
+[ext_resource path="res://ui/forge_slot.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ui/forge_window.gd" type="Script" id=2]
+
+[node name="ForgeWindow" type="ColorRect"]
+anchor_right = 1.156
+anchor_bottom = 0.978
+margin_right = -969.68
+margin_bottom = -404.16
+rect_min_size = Vector2( 300, 300 )
+script = ExtResource( 2 )
+
+[node name="SlotLayout" type="HBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_min_size = Vector2( 300, 300 )
+margin_bottom = -100.0
+
+[node name="ForgeSlot" parent="SlotLayout" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 167.0
+margin_bottom = 200.0
+accepted_data_type = "BaseData"
+
+[node name="ForgeSlot2" parent="SlotLayout" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 171.0
+margin_right = 338.0
+margin_bottom = 200.0
+accepted_data_type = "BarrelData"
+
+[node name="ForgeSlot3" parent="SlotLayout" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 342.0
+margin_right = 510.0
+margin_bottom = 200.0
+
+[node name="ForgeButton" type="Button" parent="."]
+margin_left = 184.0
+margin_top = 246.0
+margin_right = 290.0
+margin_bottom = 266.0
+disabled = true
+text = "FORGE TURRET"
+
+[node name="Label" type="Label" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 71.0
+margin_top = 212.0
+margin_right = 111.0
+margin_bottom = 226.0
+text = "BASE"
+
+[node name="Label2" type="Label" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 227.0
+margin_top = 209.0
+margin_right = 267.0
+margin_bottom = 223.0
+text = "BARREL"
+
+[node name="Label3" type="Label" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 400.0
+margin_top = 213.0
+margin_right = 448.0
+margin_bottom = 227.0
+text = "AMMO"
+
+[connection signal="item_state_changed" from="SlotLayout/ForgeSlot" to="." method="_on_ForgeSlot_item_state_changed"]
+[connection signal="item_state_changed" from="SlotLayout/ForgeSlot2" to="." method="_on_ForgeSlot2_item_state_changed"]
+[connection signal="item_state_changed" from="SlotLayout/ForgeSlot3" to="." method="_on_ForgeSlot3_item_state_changed"]
+[connection signal="pressed" from="ForgeButton" to="." method="_on_ForgeButton_pressed"]
