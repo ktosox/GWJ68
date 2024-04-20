@@ -26,7 +26,7 @@ func fire():
 	# ammo creation code goes here
 	var new_bullet = bullet_scene.instance()
 	new_bullet.global_position = $BulletSpawn.global_position
-	var speed = 260
+	var speed = 560
 	new_bullet.apply_central_impulse(Vector2.RIGHT.rotated(global_rotation) * speed)
 	get_tree().current_scene.add_child(new_bullet)
 	on_cooldown = true

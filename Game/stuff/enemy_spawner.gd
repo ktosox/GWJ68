@@ -1,5 +1,7 @@
 extends Node2D
 
+export var active = false
+
 var enemy_scene = preload("res://stuff/enemy.tscn")
 
 func spawn_enemy():

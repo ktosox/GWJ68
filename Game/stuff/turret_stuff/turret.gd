@@ -12,6 +12,8 @@ var battery_current = 50.0
 
 var charge_rate = 2.0
 
+var player_charge = 15.0
+
 var efficiency_discount = 0.0
 
 #var speed = 0.0
@@ -24,9 +26,16 @@ var cooldown = 0.0
 
 var bonus_range
 
+var barrel_data = 
+
+
 # enemy tracking stuff
 
 var tracked_enemy = null
+
+
+
+
 
 func _ready():
 	assemble_turret()
@@ -35,7 +44,7 @@ func _ready():
 var tooltip_scene = preload("res://ui/turret_tooltip.tscn")
 
 func _process(delta):
-	battery_current += delta * charge_rate
+	battery_current += delta * (charge_rate + player_charge)
 	battery_current = min(battery_current, battery_max)
 	$BatteryBar.value = battery_current
 	if tracked_enemy != null and is_instance_valid(tracked_enemy):
@@ -43,6 +52,8 @@ func _process(delta):
 
 func assemble_turret():
 	# place base
+	
+	
 	# place barrel
 
 	# connect signal from barrel to "shots_fired"
@@ -80,16 +91,6 @@ func _on_EnergyChecker_timeout():
 	pass # Replace with function body.
 
 
-func _on_HoverBox_mouse_entered():
-	$TurretTooltip.visible = true
-	pass # Replace with function body.
-
-
-func _on_HoverBox_mouse_exited():
-	$TurretTooltip.visible = false
-	pass # Replace with function body.
-
-
 
 func _on_EnemyDetector_body_entered(body):
 	if !is_instance_valid(tracked_enemy):
@@ -101,4 +102,14 @@ func _on_EnemyDetector_body_entered(body):
 func _on_EnemyDetector_body_exited(body):
 	if body == tracked_enemy:
 		update_tracked_enemy()
+	pass # Replace with function body.
+
+
+func _on_Clickable_selected(state):
+	$TurretTooltip.visible = state
+	pass # Replace with function body.
+
+
+func _on_Clickable_clicked(state):
+	
 	pass # Replace with function body.

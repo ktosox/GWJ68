@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://resources/progress_wheel.png" type="Texture" id=1]
 [ext_resource path="res://test/feature_playground.gd" type="Script" id=2]
@@ -7,8 +7,10 @@
 [ext_resource path="res://resources/dot.png" type="Texture" id=5]
 [ext_resource path="res://resources/box.png" type="Texture" id=6]
 [ext_resource path="res://resources/square.png" type="Texture" id=7]
+[ext_resource path="res://test/click_tester.tscn" type="PackedScene" id=8]
 [ext_resource path="res://stuff/turret_stuff/turret.tscn" type="PackedScene" id=9]
 [ext_resource path="res://stuff/enemy_spawner.tscn" type="PackedScene" id=10]
+[ext_resource path="res://stuff/pick_up.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 400, 30 )
@@ -81,6 +83,15 @@ position = Vector2( 529, -386 )
 
 [node name="Barrel" parent="Turret/BarrelSlot" index="0"]
 can_shoot = true
+
+[node name="ClickTester" parent="." instance=ExtResource( 8 )]
+margin_left = 122.0
+margin_top = -519.0
+margin_right = 162.0
+margin_bottom = -479.0
+
+[node name="PickUp" parent="." instance=ExtResource( 11 )]
+position = Vector2( 722, -235 )
 
 [connection signal="mouse_entered" from="Icon/TextureProgress" to="." method="_on_TextureProgress_mouse_entered"]
 [connection signal="mouse_exited" from="Icon/TextureProgress" to="." method="_on_TextureProgress_mouse_exited"]

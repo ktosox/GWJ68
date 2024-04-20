@@ -1,10 +1,11 @@
-extends Area2D
+extends Control
 
 signal clicked(state) # true if pressed, false if ended
 
 signal selected(state) # true if mouse in,false if mouse out
 
 var is_pressed = false
+
 
 
 func _on_Clickable_mouse_entered():
@@ -17,7 +18,7 @@ func _on_Clickable_mouse_exited():
 	pass # Replace with function body.
 
 
-func _on_Clickable_input_event(viewport, event, shape_idx):
+func _on_Clickable_gui_input(event):
 	if event.is_action_pressed("LMB"):
 		is_pressed = true
 		emit_signal("clicked",true)
@@ -25,3 +26,4 @@ func _on_Clickable_input_event(viewport, event, shape_idx):
 		is_pressed = false
 		emit_signal("clicked",false)
 	pass # Replace with function body.
+

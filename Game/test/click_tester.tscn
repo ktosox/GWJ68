@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ui/clickable.tscn" type="PackedScene" id=1]
+[ext_resource path="res://test/click_tester.gd" type="Script" id=2]
+
+[node name="ClickTester" type="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -20.0
+margin_top = -20.0
+margin_right = -1260.0
+margin_bottom = -700.0
+script = ExtResource( 2 )
+
+[node name="Clickable" parent="." instance=ExtResource( 1 )]
+margin_right = 0.0
+margin_bottom = 0.0
+
+[connection signal="clicked" from="Clickable" to="." method="_on_Clickable_clicked"]
+[connection signal="selected" from="Clickable" to="." method="_on_Clickable_selected"]
