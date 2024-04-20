@@ -2,6 +2,8 @@ class_name BarrelData
 
 extends Resource
 
+var item = "Barrel"
+
 var type = {
 	0 : "res://stuff/turret_stuff/barrel.tscn",
 	

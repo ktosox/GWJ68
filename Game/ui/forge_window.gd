@@ -5,6 +5,9 @@ var slot_state = [false,false,false]
 func _on_ForgeButton_pressed():
 	for slot in $SlotLayout.get_children():
 		slot.delete_item()
+	var new_turret = TurretData.new()
+	# use data from all 3 slots to set TureetData
+	GM.send_to_inventory(new_turret)
 	forge_check()
 	pass # Replace with function body.
 

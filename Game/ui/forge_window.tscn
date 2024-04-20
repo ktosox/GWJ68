@@ -21,7 +21,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 167.0
 margin_bottom = 200.0
-accepted_data_type = "BaseData"
+accepted_item_type = "Base"
 
 [node name="ForgeSlot2" parent="SlotLayout" instance=ExtResource( 1 )]
 anchor_right = 0.0
@@ -29,7 +29,7 @@ anchor_bottom = 0.0
 margin_left = 171.0
 margin_right = 338.0
 margin_bottom = 200.0
-accepted_data_type = "BarrelData"
+accepted_item_type = "Barrel"
 
 [node name="ForgeSlot3" parent="SlotLayout" instance=ExtResource( 1 )]
 anchor_right = 0.0
@@ -37,6 +37,7 @@ anchor_bottom = 0.0
 margin_left = 342.0
 margin_right = 510.0
 margin_bottom = 200.0
+accepted_item_type = "Ammo"
 
 [node name="ForgeButton" type="Button" parent="."]
 margin_left = 184.0

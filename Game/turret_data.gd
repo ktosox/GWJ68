@@ -2,6 +2,8 @@ class_name TurretData
 
 extends Resource
 
+var item = "Turret"
+
 var texture = {
 	"battery" : "res://resources/icons/battery-75.png",
 	"recharge" : "res://resources/icons/battery-pack-alt.png",

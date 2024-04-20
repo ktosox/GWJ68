@@ -1,8 +1,8 @@
-class_name BaseData
+class_name AmmoData
 
 extends Resource
 
-var item = "Base"
+var item = "Ammo"
 
 var type = {
 	0 : "name"
