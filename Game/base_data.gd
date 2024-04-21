@@ -6,6 +6,10 @@ var inventory_ID = 0
 
 var item = "Base"
 
+var icon = {
+	0 : "res://resources/icons/flat-platform.png",
+}
+
 var type = {
 	0 : "name"
 }
@@ -18,3 +22,7 @@ var value = {
 	"bonus_cost" : 0
 	
 }
+
+func get_icon():
+	return load(icon[value["type"]])
+	pass

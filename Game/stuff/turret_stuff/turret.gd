@@ -4,7 +4,7 @@ extends Node2D
 
 # uses base for battery size + re-charge rate + efficency mod
 
-var turret_data : TurretData
+export var turret_data : Resource
 
 # barrel 
 

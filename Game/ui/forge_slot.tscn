@@ -19,7 +19,13 @@ size_flags_vertical = 6
 color = Color( 0.541176, 0.501961, 0.501961, 1 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 40.0
+margin_top = 50.0
+margin_right = -40.0
+margin_bottom = -50.0
+expand = true
+stretch_mode = 1
 
 [connection signal="gui_input" from="." to="." method="_on_ForgeSlot_gui_input"]

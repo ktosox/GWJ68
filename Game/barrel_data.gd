@@ -6,6 +6,10 @@ var inventory_ID = 0
 
 var item = "Barrel"
 
+var icon = {
+	0 : "res://resources/icons/straight-pipe.png",
+}
+
 var type = {
 	0 : "res://stuff/turret_stuff/barrel.tscn",
 	
@@ -20,3 +24,7 @@ var value = {
 	"bonus_range" : 1.2,
 	"bonus_damage" : 1
 }
+
+func get_icon():
+	return load(icon[value["type"]])
+	pass

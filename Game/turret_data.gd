@@ -6,19 +6,12 @@ var inventory_ID = 0
 
 var item = "Turret"
 
-var texture = {
-	"battery" : "res://resources/icons/battery-75.png",
-	"recharge" : "res://resources/icons/battery-pack-alt.png",
-	"ammo_type" : "res://resources/icons/ammo-box.png",
-	"damage" : "res://resources/icons/back-pain.png",
-	"cost" : "res://resources/icons/supersonic-bullet.png",
-	"cooldown" : "res://resources/icons/clockwise-rotation.png",
-	"spread" : "res://resources/icons/striking-balls.png",
-	"bonus_range" : "res://resources/icons/ringed-beam.png"
-	
+var icon = {
+	0 : "res://resources/icons/turret.png",
 }
 
 var value = {
+	"type" : 0,
 	"battery" : 100,
 	"recharge" : 1.6,
 	"ammo_type" : 0,
@@ -30,3 +23,7 @@ var value = {
 }
 
 
+
+func get_icon():
+	return load(icon[value["type"]])
+	pass

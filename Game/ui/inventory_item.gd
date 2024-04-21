@@ -2,25 +2,25 @@ extends TextureRect
 
 var payload : Resource
 
-var type_to_icon ={
-	"Turret" : "res://resources/icons/turret.png",
-	"Base" : "res://resources/icons/flat-platform.png",
-	"Barrel" : "res://resources/icons/straight-pipe.png",
-	"Ammo" : "res://resources/icons/heavy-bullets.png"
-}
+#var type_to_icon ={
+#	"Turret" : "res://resources/icons/turret.png",
+#	"Base" : "res://resources/icons/flat-platform.png",
+#	"Barrel" : "res://resources/icons/straight-pipe.png",
+#	"Ammo" : "res://resources/icons/heavy-bullets.png"
+#}
 
 func _ready():
 	
-	texture = load(type_to_icon[payload.item])
+	texture = payload.get_icon()
 	make_tooltip()
 	pass
 
 func make_tooltip():
 	var tooltip = "|"
 	for i in payload.value.keys():
-		if i == "type":
-			pass
-		elif payload.value[i] == 0:
+		if i == "type" and payload.item == "Ammo":
+			tooltip += i +" : "+ String(payload.value[i]) +"|"
+		elif payload.value[i] == 0 and i != "ammo_type":
 			pass
 		else:
 			tooltip += i +" : "+ String(payload.value[i]) +"|"

@@ -23,6 +23,7 @@ func drop_data(position, data):
 	
 func load_item_icon():
 	# extract texture from held_item and set $TextureRect
+	$TextureRect.texture = held_item.get_icon()
 	pass
 
 func accept_item(item_data):
@@ -35,12 +36,12 @@ func accept_item(item_data):
 func yeet_item(): # called if has_item
 	GM.send_to_inventory(held_item)
 	held_item = null
-
+	$TextureRect.texture = null
 	emit_signal("item_state_changed",held_item)
 	pass
 
 func delete_item():
-
+	$TextureRect.texture = null
 	held_item = null
 	emit_signal("item_state_changed",held_item)
 	pass

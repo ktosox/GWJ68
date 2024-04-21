@@ -6,6 +6,12 @@ var inventory_ID = 0
 
 var item = "Ammo"
 
+var icon = {
+	0 : "res://resources/icons/heavy-bullets.png",
+	1 : "res://resources/icons/striking-balls.png",
+	2 : "res://resources/icons/supersonic-bullet.png"
+}
+
 #var type_to_name = {
 #	0 : "res://stuff/turret_stuff/ammo/ammo.tscn",
 #	1 : "res://stuff/turret_stuff/ammo/shotgun.tscn",
@@ -25,3 +31,7 @@ var value = {
 	"cooldown" : 0.5
 	
 }
+
+func get_icon():
+	return load(icon[value["type"]])
+	pass

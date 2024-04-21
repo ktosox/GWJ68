@@ -49,26 +49,26 @@ text = "FORGE TURRET"
 
 [node name="Label" type="Label" parent="."]
 modulate = Color( 0, 0, 0, 1 )
-margin_left = 71.0
-margin_top = 212.0
-margin_right = 111.0
-margin_bottom = 226.0
+margin_left = 57.0
+margin_top = 88.0
+margin_right = 97.0
+margin_bottom = 102.0
 text = "BASE"
 
 [node name="Label2" type="Label" parent="."]
 modulate = Color( 0, 0, 0, 1 )
-margin_left = 227.0
-margin_top = 209.0
-margin_right = 267.0
-margin_bottom = 223.0
+margin_left = 225.0
+margin_top = 90.0
+margin_right = 273.0
+margin_bottom = 104.0
 text = "BARREL"
 
 [node name="Label3" type="Label" parent="."]
 modulate = Color( 0, 0, 0, 1 )
-margin_left = 400.0
-margin_top = 213.0
-margin_right = 448.0
-margin_bottom = 227.0
+margin_left = 394.0
+margin_top = 89.0
+margin_right = 442.0
+margin_bottom = 103.0
 text = "AMMO"
 
 [connection signal="item_state_changed" from="SlotLayout/Base" to="." method="_on_Base_item_state_changed"]
