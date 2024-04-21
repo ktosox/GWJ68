@@ -20,7 +20,7 @@ var texture = {
 
 var value = {
 	"battery" : 100,
-	"recharge" : 1.2,
+	"recharge" : 1.6,
 	"ammo_type" : 0,
 	"damage" : 10,
 	"cost" : 5,

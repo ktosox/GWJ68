@@ -14,19 +14,11 @@ var battery_current = 50.0
 
 var charge_rate = 1.0
 
-var player_charge = 6.0
+var bonus_charge = 0 # applied when player holds LMB
 
-var bonus_charge = 0
-
-var efficiency_discount = 0.0
-
-#var speed = 0.0
-
-var damage = 0.0
+var player_charge = 8.0 # how much to speed up thanks to player
 
 var cost = 6.0
-
-var cooldown = 0.0
 
 var bonus_range
 
@@ -44,7 +36,7 @@ func _ready():
 	assemble_turret()
 
 
-var tooltip_scene = preload("res://ui/turret_tooltip.tscn")
+#var tooltip_scene = preload("res://ui/turret_tooltip.tscn")
 
 func _process(delta):
 	battery_current += delta * (charge_rate + (player_charge * bonus_charge))
@@ -57,29 +49,25 @@ func _process(delta):
 
 func assemble_turret():
 	# set values from data
+	
+	# for base
 	battery_max = turret_data.value["battery"]
 	charge_rate = turret_data.value["recharge"]
-	$EnemyDetector/CollisionShape2D.shape.radius *= turret_data.value["bonus_range"]
+	cost = turret_data.value["cost"]
+	$EnemyDetector/CollisionShape2D.shape.radius = turret_data.value["range"]
 	
-#var value = {
-#	"battery" : 100,
-#	"recharge" : 5,
-#	"ammo_type" : 0,
-#	"damage" : 10,
-#	"speed" : 10,
-#	"cooldown" : 2,
-#	"spread" : 1,
-#	"bonus_range" : 0
-#}
-
-	# place base
+	# for barrel
+	$BarrelSlot/Barrel.get_node("CooldownTimer").wait_time = turret_data.value["cooldown"]
 	
+	# for ammo
+	var new_ammo = load(AmmoData.new().type[turret_data.value["ammo_type"]]).instance()
+	new_ammo.spread = turret_data.value["spread"]
+	new_ammo.damage = turret_data.value["damage"]
+	$BarrelSlot/Barrel.get_node("BulletSpawn").add_child(new_ammo)
 	
-	# place barrel
-
 	# connect signal from barrel to "shots_fired"
 	$BarrelSlot/Barrel.connect("has_fired",self,"shots_fired")
-	# get Funcref from barrel for turning it on/off
+	# get Funcref from barrel for turning it on/off (dewperciated?)
 	pass
 
 func shots_fired():
@@ -127,7 +115,7 @@ func _on_EnemyDetector_body_exited(body):
 
 
 func _on_Clickable_selected(state):
-	$TurretTooltip.visible = state
+
 	pass # Replace with function body.
 
 

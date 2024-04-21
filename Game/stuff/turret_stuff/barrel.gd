@@ -7,8 +7,7 @@ signal has_fired
 var on_cooldown = false
 
 
-func _ready():
-	assert($BulletSpawn.get_children().size() == 1)
+
 
 func set_can_shoot(shoot_state : bool):
 	if shoot_state == can_shoot:
@@ -18,6 +17,7 @@ func set_can_shoot(shoot_state : bool):
 	pass
 
 func fire():
+
 	if can_shoot == false or on_cooldown == true:
 		return
 	if $EnemyDetector.get_overlapping_bodies().size() == 0:
