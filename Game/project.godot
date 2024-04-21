@@ -39,6 +39,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Forge"
+run/main_scene="res://world/world.tscn"
 config/icon="res://icon.png"
 
 [autoload]

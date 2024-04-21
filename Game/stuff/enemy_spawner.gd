@@ -12,7 +12,14 @@ func spawn_enemy():
 	
 	pass
 
+func set_active(state : bool):
+	active = state
+	if active:
+		$Dot.modulate = ColorN("red")
+	else:
+		$Dot.modulate = ColorN("black")
 
 func _on_Timer_timeout():
-	spawn_enemy()
+	if active:
+		spawn_enemy()
 	pass # Replace with function body.

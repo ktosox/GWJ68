@@ -1,17 +1,70 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://world/world.gd" type="Script" id=1]
 [ext_resource path="res://stuff/forge_heart.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ui/inventory.tscn" type="PackedScene" id=3]
 [ext_resource path="res://stuff/pick_up.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ammo_data.gd" type="Script" id=5]
-[ext_resource path="res://stuff/puff_of_smoke.tscn" type="PackedScene" id=6]
+[ext_resource path="res://stuff/enemy_spawner.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 5 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 500, 80 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 300, 40 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "1"
+tracks/0/type = "method"
+tracks/0/path = NodePath("EnemySpawner")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ true ],
+"method": "set_active"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("EnemySpawner2")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"values": [  ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("EnemySpawner4")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"values": [  ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("EnemySpawner3")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"values": [  ]
+}
 
 [node name="World" type="Node2D"]
 script = ExtResource( 1 )
@@ -31,6 +84,7 @@ payload = SubResource( 1 )
 position = Vector2( 994, 683 )
 collision_layer = 2
 collision_mask = 24
+constant_linear_velocity = Vector2( -40, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FirstFloorRight"]
 shape = SubResource( 2 )
@@ -43,6 +97,7 @@ width = 160.0
 position = Vector2( -6, 683 )
 collision_layer = 2
 collision_mask = 24
+constant_linear_velocity = Vector2( 40, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FirstFloorLeft"]
 shape = SubResource( 2 )
@@ -51,9 +106,50 @@ shape = SubResource( 2 )
 points = PoolVector2Array( 500, 0, -500, 0 )
 width = 160.0
 
+[node name="SecondFloorRight" type="StaticBody2D" parent="."]
+position = Vector2( 1003, 325 )
+collision_layer = 2
+collision_mask = 24
+constant_linear_velocity = Vector2( 40, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SecondFloorRight"]
+shape = SubResource( 3 )
+
+[node name="Line2D2" type="Line2D" parent="SecondFloorRight"]
+points = PoolVector2Array( 300, 0, -300, 0 )
+width = 80.0
+
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 482, 320 )
+position = Vector2( 879, 312 )
 current = true
 
-[node name="PuffOfSmoke" parent="." instance=ExtResource( 6 )]
-position = Vector2( 193, 565 )
+[node name="EnemySpawner" parent="." instance=ExtResource( 6 )]
+position = Vector2( 1447, 543 )
+active = true
+
+[node name="EnemySpawner2" parent="." instance=ExtResource( 6 )]
+position = Vector2( -442, 562 )
+active = true
+
+[node name="EnemySpawner3" parent="." instance=ExtResource( 6 )]
+position = Vector2( -162, 101 )
+active = true
+
+[node name="EnemySpawner4" parent="." instance=ExtResource( 6 )]
+position = Vector2( 765, 223 )
+active = true
+
+[node name="OutterWalls" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 24
+
+[node name="Line2D" type="Line2D" parent="OutterWalls"]
+points = PoolVector2Array( -506, -36, -517, 759, 1522, 743, 1526, -37, 683, -30, 681, 338, 636, 337, 628, -28, -538, -28 )
+width = 60.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="OutterWalls"]
+polygon = PoolVector2Array( -465, -6, -480, 778, -563, 764, -544, -87, 1681, -128, 1666, 929, 1479, 903, 1498, -12, 712, 1, 714, 363, 611, 363, 602, -3 )
+
+[node name="LevelControl" type="AnimationPlayer" parent="."]
+autoplay = "1"
+anims/1 = SubResource( 4 )
