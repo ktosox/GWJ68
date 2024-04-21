@@ -12,7 +12,7 @@
 [ext_resource path="res://stuff/enemy_spawner.tscn" type="PackedScene" id=10]
 [ext_resource path="res://stuff/pick_up.tscn" type="PackedScene" id=11]
 [ext_resource path="res://stuff/forge_heart.tscn" type="PackedScene" id=12]
-[ext_resource path="res://stuff/turret_stuff/ammo/shotgun.tscn" type="PackedScene" id=13]
+[ext_resource path="res://stuff/turret_stuff/ammo/machine_gun.tscn" type="PackedScene" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 400, 30 )
@@ -68,7 +68,7 @@ current = true
 position = Vector2( 682, -172 )
 collision_layer = 2
 collision_mask = 16
-constant_linear_velocity = Vector2( -40, 0 )
+constant_linear_velocity = Vector2( 40, 0 )
 
 [node name="Line2D" type="Line2D" parent="StaticBody2D"]
 points = PoolVector2Array( 400, 0, -400, 0 )
@@ -78,7 +78,7 @@ width = 60.0
 shape = SubResource( 1 )
 
 [node name="EnemySpawner" parent="." instance=ExtResource( 10 )]
-position = Vector2( 913, -269 )
+position = Vector2( 300, -276 )
 
 [node name="Turret" parent="." instance=ExtResource( 9 )]
 position = Vector2( 529, -386 )
@@ -86,8 +86,9 @@ position = Vector2( 529, -386 )
 [node name="Barrel" parent="Turret/BarrelSlot" index="0"]
 can_shoot = true
 
-[node name="Shotgun" parent="Turret/BarrelSlot/Barrel/BulletSpawn" index="0" instance=ExtResource( 13 )]
-spread = 2.0
+[node name="MachineGun" parent="Turret/BarrelSlot/Barrel/BulletSpawn" index="0" instance=ExtResource( 13 )]
+spread = 0.2
+damage = 20
 
 [node name="ClickTester" parent="." instance=ExtResource( 8 )]
 margin_left = 1044.0

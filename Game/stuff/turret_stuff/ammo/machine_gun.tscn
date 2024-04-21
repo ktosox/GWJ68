@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://stuff/turret_stuff/ammo/machine_gun.gd" type="Script" id=1]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.426901, 0.590909 ), -0.777273, -0.777273, 0, 0, Vector2( 1, 0.0454545 ), -1.8249, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0.0477178, 0.0871369, 0.375519, 0.767635 )
+colors = PoolColorArray( 0.980469, 0.471653, 0.294907, 1, 1, 0.703125, 0, 1, 0.956863, 0.72549, 0.180392, 0.917647, 1, 1, 1, 0 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "New Anim"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flash:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Flash:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="MachineGun" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Flash" type="Line2D" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+points = PoolVector2Array( 0, 0, 3, 0, 6, 0, 20, 0, 30, 0, 40, 0 )
+width = 20.0
+width_curve = SubResource( 1 )
+default_color = Color( 0.988235, 0.721569, 0.0901961, 1 )
+gradient = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Flash"]
+root_node = NodePath("../..")
+"anims/New Anim" = SubResource( 3 )
+anims/RESET = SubResource( 4 )
+
+[node name="Detector" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 600, 0 )
+collision_mask = 16
