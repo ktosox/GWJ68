@@ -26,7 +26,6 @@ var cooldown = 0.0
 
 var bonus_range
 
-var barrel_data = 
 
 
 # enemy tracking stuff

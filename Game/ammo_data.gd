@@ -10,7 +10,7 @@ var type = {
 
 var value = {
 	"type" : 0,
-	"bonus_battery" : 10,
-	"bonus_charge" : 5,
+	"damage" : 10,
+	"speed" : 5,
 	
 }

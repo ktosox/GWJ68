@@ -1,7 +1,5 @@
 extends Node2D
 
-export var spread = 1.0 # 
-
 export var can_shoot = false
 
 signal has_fired
