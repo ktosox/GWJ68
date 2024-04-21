@@ -13,8 +13,8 @@ var type = {
 var value = {
 	"type" : 0,
 	"battery" : 100,
-	"charge" : 0.5,
+	"recharge" : 0.5,
 	"range" : 200,
-	"bonust_cost" : 0
+	"bonus_cost" : 0
 	
 }

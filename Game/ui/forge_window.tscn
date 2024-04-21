@@ -16,14 +16,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_bottom = -100.0
 
-[node name="ForgeSlot" parent="SlotLayout" instance=ExtResource( 1 )]
+[node name="Base" parent="SlotLayout" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 167.0
 margin_bottom = 200.0
 accepted_item_type = "Base"
 
-[node name="ForgeSlot2" parent="SlotLayout" instance=ExtResource( 1 )]
+[node name="Barrel" parent="SlotLayout" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 171.0
@@ -31,7 +31,7 @@ margin_right = 338.0
 margin_bottom = 200.0
 accepted_item_type = "Barrel"
 
-[node name="ForgeSlot3" parent="SlotLayout" instance=ExtResource( 1 )]
+[node name="Ammo" parent="SlotLayout" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 342.0
@@ -71,7 +71,7 @@ margin_right = 448.0
 margin_bottom = 227.0
 text = "AMMO"
 
-[connection signal="item_state_changed" from="SlotLayout/ForgeSlot" to="." method="_on_ForgeSlot_item_state_changed"]
-[connection signal="item_state_changed" from="SlotLayout/ForgeSlot2" to="." method="_on_ForgeSlot2_item_state_changed"]
-[connection signal="item_state_changed" from="SlotLayout/ForgeSlot3" to="." method="_on_ForgeSlot3_item_state_changed"]
+[connection signal="item_state_changed" from="SlotLayout/Base" to="." method="_on_Base_item_state_changed"]
+[connection signal="item_state_changed" from="SlotLayout/Barrel" to="." method="_on_Barrel_item_state_changed"]
+[connection signal="item_state_changed" from="SlotLayout/Ammo" to="." method="_on_Ammo_item_state_changed"]
 [connection signal="pressed" from="ForgeButton" to="." method="_on_ForgeButton_pressed"]

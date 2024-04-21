@@ -26,7 +26,7 @@ var value = {
 	"cost" : 5,
 	"cooldown" : 2,
 	"spread" : 1,
-	"bonus_range" : 1.5
+	"range" : 200
 }
 
 

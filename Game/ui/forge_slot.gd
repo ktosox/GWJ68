@@ -1,6 +1,6 @@
 extends Control
 
-signal item_state_changed(state)
+signal item_state_changed(item)
 
 export(String, "Base", "Barrel", "Ammo") var accepted_item_type
 
@@ -27,22 +27,22 @@ func load_item_icon():
 
 func accept_item(item_data):
 	held_item = item_data
-	has_item = true
+
 	GM.take_from_inventory(item_data)
-	emit_signal("item_state_changed",has_item)
+	emit_signal("item_state_changed",held_item)
 	pass
 
 func yeet_item(): # called if has_item
 	GM.send_to_inventory(held_item)
 	held_item = null
-	has_item = false
-	emit_signal("item_state_changed",has_item)
+
+	emit_signal("item_state_changed",held_item)
 	pass
 
 func delete_item():
-	has_item = false
+
 	held_item = null
-	emit_signal("item_state_changed",has_item)
+	emit_signal("item_state_changed",held_item)
 	pass
 
 func _on_ForgeSlot_gui_input(event):
