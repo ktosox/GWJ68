@@ -4,15 +4,19 @@ extends Node2D
 
 # uses base for battery size + re-charge rate + efficency mod
 
+var turret_data : TurretData
+
 # barrel 
 
 var battery_max = 100.0
 
 var battery_current = 50.0
 
-var charge_rate = 0.6
+var charge_rate = 1.0
 
-var player_charge = 0.0
+var player_charge = 6.0
+
+var bonus_charge = 0
 
 var efficiency_discount = 0.0
 
@@ -43,7 +47,7 @@ func _ready():
 var tooltip_scene = preload("res://ui/turret_tooltip.tscn")
 
 func _process(delta):
-	battery_current += delta * (charge_rate + player_charge)
+	battery_current += delta * (charge_rate + (player_charge * bonus_charge))
 	battery_current = min(battery_current, battery_max)
 	$BatteryBar.value = battery_current
 	if tracked_enemy != null and is_instance_valid(tracked_enemy):
@@ -52,6 +56,22 @@ func _process(delta):
 		$BarrelSlot.look_at($Tracker.global_position)
 
 func assemble_turret():
+	# set values from data
+	battery_max = turret_data.value["battery"]
+	charge_rate = turret_data.value["recharge"]
+	$EnemyDetector/CollisionShape2D.shape.radius *= turret_data.value["bonus_range"]
+	
+#var value = {
+#	"battery" : 100,
+#	"recharge" : 5,
+#	"ammo_type" : 0,
+#	"damage" : 10,
+#	"speed" : 10,
+#	"cooldown" : 2,
+#	"spread" : 1,
+#	"bonus_range" : 0
+#}
+
 	# place base
 	
 	
@@ -113,7 +133,7 @@ func _on_Clickable_selected(state):
 
 func _on_Clickable_clicked(state):
 	if state:
-		player_charge = 5.0
+		bonus_charge = 1
 	else:
-		player_charge = 0.0
+		bonus_charge = 0
 	pass # Replace with function body.

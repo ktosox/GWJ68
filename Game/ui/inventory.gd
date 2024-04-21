@@ -11,8 +11,8 @@ func _ready():
 
 func add_item(data):
 	var new_item = invetory_item_scene.instance()
+	data.inventory_ID = ID_tracker
 	new_item.payload = data
-	new_item.ID = ID_tracker
 	item_list[ID_tracker] = new_item
 	ID_tracker += 1
 	$ItemHolder.add_child(new_item)

@@ -52,9 +52,14 @@ window/size/height=720
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
+[global]
+
+hint=false
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
+timers/tooltip_delay_sec=0.0
 
 [input]
 

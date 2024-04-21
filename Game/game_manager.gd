@@ -9,6 +9,6 @@ func send_to_inventory(data):
 	current_inventory.add_item(data)
 	pass
 
-func take_from_inventory(ID):
-	current_inventory.remove_item(ID)
+func take_from_inventory(data):
+	current_inventory.remove_item(data.inventory_ID)
 	pass

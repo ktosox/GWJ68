@@ -10,7 +10,7 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 200.0
 
-[node name="Turret" type="Node2D"]
+[node name="Turret" type="Node2D" groups=["Turret"]]
 script = ExtResource( 1 )
 
 [node name="EnergyChecker" type="Timer" parent="."]

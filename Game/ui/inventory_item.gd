@@ -1,8 +1,6 @@
 extends TextureRect
 
-var payload
-
-var ID
+var payload : Resource
 
 var type_to_icon ={
 	"Turret" : "res://resources/icons/turret.png",
@@ -13,7 +11,19 @@ var type_to_icon ={
 
 func _ready():
 	texture = load(type_to_icon[payload.item])
-	
+	make_tooltip()
+	pass
+
+func make_tooltip():
+	var tooltip = "|"
+	for i in payload.value.keys():
+		if i == "type":
+			pass
+		elif payload.value[i] == 0:
+			pass
+		else:
+			tooltip += i +" : "+ String(payload.value[i]) +"|"
+	hint_tooltip = tooltip
 	pass
 
 func get_drag_data(position):
@@ -23,4 +33,4 @@ func get_drag_data(position):
 	preview.stretch_mode = stretch_mode
 	preview.texture = texture
 	set_drag_preview(preview)
-	return [payload,ID]
+	return payload

@@ -2,6 +2,8 @@ class_name BaseData
 
 extends Resource
 
+var inventory_ID = 0
+
 var item = "Base"
 
 var type = {
@@ -10,7 +12,9 @@ var type = {
 
 var value = {
 	"type" : 0,
-	"bonus_battery" : 10,
-	"bonus_charge" : 5,
+	"battery" : 100,
+	"charge" : 0.5,
+	"range" : 200,
+	"bonust_cost" : 0
 	
 }

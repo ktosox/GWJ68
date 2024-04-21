@@ -9,7 +9,7 @@ var held_item : Resource # one of the accepted data types
 var has_item = false
 
 func can_drop_data(position, data):
-	if data[0].item == accepted_item_type:
+	if data.item == accepted_item_type:
 		return true
 		
 	return false
@@ -26,9 +26,9 @@ func load_item_icon():
 	pass
 
 func accept_item(item_data):
-	held_item = item_data[0]
+	held_item = item_data
 	has_item = true
-	GM.take_from_inventory(item_data[1])
+	GM.take_from_inventory(item_data)
 	emit_signal("item_state_changed",has_item)
 	pass
 
