@@ -13,7 +13,7 @@ var type_to_icon ={
 
 func _ready():
 	texture = load(type_to_icon[payload.item])
-
+	
 	pass
 
 func get_drag_data(position):

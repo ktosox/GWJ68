@@ -10,9 +10,9 @@ var battery_max = 100.0
 
 var battery_current = 50.0
 
-var charge_rate = 2.0
+var charge_rate = 0.6
 
-var player_charge = 15.0
+var player_charge = 0.0
 
 var efficiency_discount = 0.0
 
@@ -47,7 +47,9 @@ func _process(delta):
 	battery_current = min(battery_current, battery_max)
 	$BatteryBar.value = battery_current
 	if tracked_enemy != null and is_instance_valid(tracked_enemy):
-		$BarrelSlot.look_at(tracked_enemy.global_position)
+		var offset = tracked_enemy.linear_velocity.x * 0.4
+		$Tracker.global_position = tracked_enemy.global_position + Vector2(offset,0)
+		$BarrelSlot.look_at($Tracker.global_position)
 
 func assemble_turret():
 	# place base
@@ -110,5 +112,8 @@ func _on_Clickable_selected(state):
 
 
 func _on_Clickable_clicked(state):
-	
+	if state:
+		player_charge = 5.0
+	else:
+		player_charge = 0.0
 	pass # Replace with function body.

@@ -4,12 +4,11 @@ export var can_shoot = false
 
 signal has_fired
 
-var bullet_scene = preload("res://stuff/turret_stuff/bullet.tscn")
-
 var on_cooldown = false
 
 
-
+func _ready():
+	assert($BulletSpawn.get_children().size() == 1)
 
 func set_can_shoot(shoot_state : bool):
 	if shoot_state == can_shoot:
@@ -21,12 +20,10 @@ func set_can_shoot(shoot_state : bool):
 func fire():
 	if can_shoot == false or on_cooldown == true:
 		return
+	if $EnemyDetector.get_overlapping_bodies().size() == 0:
+		return
 	# ammo creation code goes here
-	var new_bullet = bullet_scene.instance()
-	new_bullet.global_position = $BulletSpawn.global_position
-	var speed = 560
-	new_bullet.apply_central_impulse(Vector2.RIGHT.rotated(global_rotation) * speed)
-	get_tree().current_scene.add_child(new_bullet)
+	$BulletSpawn.get_child(0).shoot()
 	on_cooldown = true
 	$CooldownTimer.start()
 	emit_signal("has_fired")
