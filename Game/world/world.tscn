@@ -3,12 +3,9 @@
 [ext_resource path="res://world/world.gd" type="Script" id=1]
 [ext_resource path="res://stuff/forge_heart.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ui/inventory.tscn" type="PackedScene" id=3]
-[ext_resource path="res://stuff/pick_up.tscn" type="PackedScene" id=4]
-[ext_resource path="res://ammo_data.gd" type="Script" id=5]
 [ext_resource path="res://stuff/enemy_spawner.tscn" type="PackedScene" id=6]
-
-[sub_resource type="Resource" id=1]
-script = ExtResource( 5 )
+[ext_resource path="res://ui/build_space.tscn" type="PackedScene" id=7]
+[ext_resource path="res://ui/forge_window.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 500, 80 )
@@ -18,6 +15,7 @@ extents = Vector2( 300, 40 )
 
 [sub_resource type="Animation" id=4]
 resource_name = "1"
+length = 16.0
 tracks/0/type = "method"
 tracks/0/path = NodePath("EnemySpawner")
 tracks/0/interp = 1
@@ -25,10 +23,19 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.3 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 3.8, 5.3, 9.6, 13.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "values": [ {
 "args": [ true ],
+"method": "set_active"
+}, {
+"args": [ false ],
+"method": "set_active"
+}, {
+"args": [ true ],
+"method": "set_active"
+}, {
+"args": [ false ],
 "method": "set_active"
 } ]
 }
@@ -39,9 +46,21 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"values": [  ]
+"times": PoolRealArray( 0.7, 2.6, 6.7, 8.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [ true ],
+"method": "set_active"
+}, {
+"args": [ false ],
+"method": "set_active"
+}, {
+"args": [ true ],
+"method": "set_active"
+}, {
+"args": [ false ],
+"method": "set_active"
+} ]
 }
 tracks/2/type = "method"
 tracks/2/path = NodePath("EnemySpawner4")
@@ -50,9 +69,15 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"values": [  ]
+"times": PoolRealArray( 11.1, 14.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ true ],
+"method": "set_active"
+}, {
+"args": [ false ],
+"method": "set_active"
+} ]
 }
 tracks/3/type = "method"
 tracks/3/path = NodePath("EnemySpawner3")
@@ -61,30 +86,130 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"values": [  ]
+"times": PoolRealArray( 6.4, 8.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ true ],
+"method": "set_active"
+}, {
+"args": [ false ],
+"method": "set_active"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Camera2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.4, 0.6, 3.2, 3.4, 5.9, 6.1, 9.2, 9.4, 15 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 480, 330 ), Vector2( 130, 330 ), Vector2( 130, 330 ), Vector2( 870, 330 ), Vector2( 870, 330 ), Vector2( 130, 330 ), Vector2( 130, 330 ), Vector2( 870, 330 ), Vector2( 870, 330 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("UI/VictoryScreen:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 15.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 480, 330 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/VictoryScreen:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
 }
 
 [node name="World" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="ForgeHeart" parent="." instance=ExtResource( 2 )]
-position = Vector2( 499, 602 )
-
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="Inventory" parent="UI" instance=ExtResource( 3 )]
 
-[node name="PickUp" parent="." instance=ExtResource( 4 )]
-position = Vector2( 658, 534 )
-payload = SubResource( 1 )
+[node name="VictoryScreen" type="ColorRect" parent="UI"]
+pause_mode = 2
+visible = false
+margin_right = 1280.0
+margin_bottom = 720.0
+
+[node name="Label" type="Label" parent="UI/VictoryScreen"]
+modulate = Color( 0.968627, 1, 0, 1 )
+margin_left = 116.0
+margin_top = 254.0
+margin_right = 246.0
+margin_bottom = 268.0
+rect_scale = Vector2( 8, 8 )
+text = "YOU ARE A WINRAR!"
+
+[node name="Reset2" type="Button" parent="UI/VictoryScreen"]
+margin_left = 498.0
+margin_top = 413.0
+margin_right = 579.0
+margin_bottom = 433.0
+rect_scale = Vector2( 4, 4 )
+text = "TRY AGAIN"
+
+[node name="LoseScreen" type="ColorRect" parent="UI"]
+pause_mode = 2
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Label" type="Label" parent="UI/LoseScreen"]
+modulate = Color( 1, 0, 0, 1 )
+margin_left = 440.0
+margin_top = 133.0
+margin_right = 507.0
+margin_bottom = 147.0
+rect_scale = Vector2( 6, 6 )
+text = "game over"
+
+[node name="Reset" type="Button" parent="UI/LoseScreen"]
+margin_left = 498.0
+margin_top = 413.0
+margin_right = 579.0
+margin_bottom = 433.0
+rect_scale = Vector2( 4, 4 )
+text = "TRY AGAIN"
+
+[node name="ForgeHeart" parent="." instance=ExtResource( 2 )]
+position = Vector2( 499, 602 )
 
 [node name="FirstFloorRight" type="StaticBody2D" parent="."]
 position = Vector2( 994, 683 )
 collision_layer = 2
 collision_mask = 24
-constant_linear_velocity = Vector2( -40, 0 )
+constant_linear_velocity = Vector2( -30, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FirstFloorRight"]
 shape = SubResource( 2 )
@@ -97,7 +222,7 @@ width = 160.0
 position = Vector2( -6, 683 )
 collision_layer = 2
 collision_mask = 24
-constant_linear_velocity = Vector2( 40, 0 )
+constant_linear_velocity = Vector2( 30, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FirstFloorLeft"]
 shape = SubResource( 2 )
@@ -110,7 +235,7 @@ width = 160.0
 position = Vector2( 1003, 325 )
 collision_layer = 2
 collision_mask = 24
-constant_linear_velocity = Vector2( 40, 0 )
+constant_linear_velocity = Vector2( 30, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SecondFloorRight"]
 shape = SubResource( 3 )
@@ -120,24 +245,20 @@ points = PoolVector2Array( 300, 0, -300, 0 )
 width = 80.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 879, 312 )
+position = Vector2( 480, 330 )
 current = true
 
 [node name="EnemySpawner" parent="." instance=ExtResource( 6 )]
 position = Vector2( 1447, 543 )
-active = true
 
 [node name="EnemySpawner2" parent="." instance=ExtResource( 6 )]
 position = Vector2( -442, 562 )
-active = true
 
 [node name="EnemySpawner3" parent="." instance=ExtResource( 6 )]
 position = Vector2( -162, 101 )
-active = true
 
 [node name="EnemySpawner4" parent="." instance=ExtResource( 6 )]
 position = Vector2( 765, 223 )
-active = true
 
 [node name="OutterWalls" type="StaticBody2D" parent="."]
 collision_layer = 2
@@ -148,8 +269,29 @@ points = PoolVector2Array( -506, -36, -517, 759, 1522, 743, 1526, -37, 683, -30,
 width = 60.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="OutterWalls"]
-polygon = PoolVector2Array( -465, -6, -480, 778, -563, 764, -544, -87, 1681, -128, 1666, 929, 1479, 903, 1498, -12, 712, 1, 714, 363, 611, 363, 602, -3 )
+polygon = PoolVector2Array( -465, -6, -480, 778, -563, 764, -544, -87, 1681, -128, 1663, 815, 1500, 817, 1498, -12, 712, 1, 714, 363, 611, 363, 602, -3 )
 
 [node name="LevelControl" type="AnimationPlayer" parent="."]
 autoplay = "1"
+playback_speed = 0.07
 anims/1 = SubResource( 4 )
+anims/RESET = SubResource( 5 )
+
+[node name="BuildSpace" parent="." instance=ExtResource( 7 )]
+margin_left = -430.0
+margin_top = 35.0
+margin_right = 1470.0
+margin_bottom = 555.0
+
+[node name="ForgeWindow2" parent="." instance=ExtResource( 8 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 401.0
+margin_top = 480.0
+margin_right = 601.0
+margin_bottom = 600.0
+
+[connection signal="pressed" from="UI/VictoryScreen/Reset2" to="." method="_on_Reset_pressed"]
+[connection signal="pressed" from="UI/LoseScreen/Reset" to="." method="_on_Reset_pressed"]
+[connection signal="game_over" from="ForgeHeart" to="." method="_on_ForgeHeart_game_over"]
+[connection signal="animation_finished" from="LevelControl" to="." method="_on_LevelControl_animation_finished"]

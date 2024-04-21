@@ -24,6 +24,7 @@ func get_hit(damage):
 func die():
 	var smoke = death_effect.instance()
 	smoke.global_position = global_position
+	GM.create_next_drop(global_position)
 	get_parent().add_child(smoke)
 	queue_free()
 	pass

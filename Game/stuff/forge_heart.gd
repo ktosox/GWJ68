@@ -1,6 +1,8 @@
 extends Node2D
 
-export var health_max = 200
+export var health_max = 120
+
+signal game_over
 
 var health: int
 
@@ -15,10 +17,12 @@ func get_hit(damage):
 	$HealthBar.value = health
 	if health <= 0 :
 		print("lose game")
+		emit_signal("game_over")
 
 
 func _on_RigidBody2D_body_entered(body):
-	get_hit(body.health)
-	
-	body.die()
+	if body.is_in_group("Enemy"):
+		get_hit(body.health)
+		
+		body.die()
 	pass # Replace with function body.

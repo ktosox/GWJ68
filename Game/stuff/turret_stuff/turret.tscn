@@ -51,6 +51,7 @@ margin_right = 25.0
 margin_bottom = 25.0
 
 [node name="Tracker" type="Sprite" parent="."]
+visible = false
 position = Vector2( -24, 54 )
 texture = ExtResource( 6 )
 

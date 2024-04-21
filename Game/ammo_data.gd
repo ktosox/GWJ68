@@ -26,11 +26,17 @@ var type = {
 
 var value = {
 	"type" : 0,
-	"damage" : 10,
-	"cost" : 2,
+	"damage" : 5,
+	"cost" : 3,
 	"cooldown" : 0.5
 	
 }
+
+func randomize_values():
+	value["damage"] += int (rand_range(-1,5) )
+	value["cost"] += int(rand_range(-1,2) )
+	value["cooldown"] += int(rand_range(-2,4))*0.1
+	value["type"] = randi()%3
 
 func get_icon():
 	return load(icon[value["type"]])

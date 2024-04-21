@@ -33,6 +33,7 @@ var targeting_offfset = 0.4
 
 
 func _ready():
+	$EnemyDetector/CollisionShape2D.shape = CircleShape2D.new()
 	assemble_turret()
 
 

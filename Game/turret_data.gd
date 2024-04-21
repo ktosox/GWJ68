@@ -19,7 +19,7 @@ var value = {
 	"cost" : 5,
 	"cooldown" : 2,
 	"spread" : 0.2,
-	"range" : 200
+	"range" : 320
 }
 
 

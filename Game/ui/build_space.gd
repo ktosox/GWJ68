@@ -12,9 +12,10 @@ func can_drop_data(position, data):
 	if data.item == "Turret":
 		$Preview.rect_position = position + preview_offset
 		$Preview.visible = true
-	
+	else:
+		return false
 	# is location valid?
-	if $Preview.rect_position.x < 500 :
+	if $Preview.rect_position.x > 0 :
 		$Preview.color = ColorN("green")
 		return true
 	# if yes -> show highlight
@@ -28,7 +29,7 @@ func drop_data(position, data):
 	# build the thing described by data at position
 	var new_turret = turret_scene.instance()
 	new_turret.turret_data = data
-	new_turret.position = position
+	new_turret.position = position + rect_position
 	get_parent().add_child(new_turret)
 	# consume turret from inventory
 	GM.take_from_inventory(data)
