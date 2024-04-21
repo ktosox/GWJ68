@@ -7,4 +7,4 @@
 script = ExtResource( 1 )
 
 [node name="ForgeHeart" parent="." instance=ExtResource( 2 )]
-position = Vector2( -3, -17 )
+position = Vector2( 499, 602 )

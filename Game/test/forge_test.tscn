@@ -13,8 +13,8 @@ script = ExtResource( 2 )
 [node name="ForgeWindow" parent="." instance=ExtResource( 1 )]
 margin_left = 122.0
 margin_top = 84.0
-margin_right = -847.68
-margin_bottom = -320.16
+margin_right = -997.68
+margin_bottom = -380.16
 
 [node name="Base" type="Button" parent="."]
 margin_left = 832.0

@@ -6,8 +6,6 @@ export(String, "Base", "Barrel", "Ammo") var accepted_item_type
 
 var held_item : Resource # one of the accepted data types
 
-var has_item = false
-
 func can_drop_data(position, data):
 	if data.item == accepted_item_type:
 		return true
@@ -15,7 +13,7 @@ func can_drop_data(position, data):
 	return false
 
 func drop_data(position, data):
-	if has_item:
+	if held_item != null:
 		yeet_item()
 	accept_item(data)
 	load_item_icon()
@@ -48,7 +46,7 @@ func delete_item():
 
 func _on_ForgeSlot_gui_input(event):
 	if event.is_action_pressed("LMB"):
-		if has_item:
+		if held_item != null:
 			yeet_item()
 		pass
 	pass # Replace with function body.
