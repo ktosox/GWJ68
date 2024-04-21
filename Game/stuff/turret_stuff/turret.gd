@@ -28,7 +28,7 @@ var bonus_range
 
 var tracked_enemy = null
 
-
+var targeting_offfset = 0.4
 
 
 
@@ -43,11 +43,11 @@ func _process(delta):
 	battery_current = min(battery_current, battery_max)
 	$BatteryBar.value = battery_current
 	if tracked_enemy != null and is_instance_valid(tracked_enemy):
-		var offset = tracked_enemy.linear_velocity.x * 0.4
-		$Tracker.global_position = tracked_enemy.global_position + Vector2(offset,0)
+		$Tracker.global_position = tracked_enemy.global_position + Vector2(tracked_enemy.linear_velocity.x * targeting_offfset,0)
 		$BarrelSlot.look_at($Tracker.global_position)
 
 func assemble_turret():
+	print("assembling turret: ",turret_data.value)
 	# set values from data
 	
 	# for base
@@ -63,8 +63,10 @@ func assemble_turret():
 	var new_ammo = load(AmmoData.new().type[turret_data.value["ammo_type"]]).instance()
 	new_ammo.spread = turret_data.value["spread"]
 	new_ammo.damage = turret_data.value["damage"]
-	$BarrelSlot/Barrel.get_node("BulletSpawn").add_child(new_ammo)
 	
+	$BarrelSlot/Barrel.get_node("BulletSpawn").add_child(new_ammo)
+	if turret_data.value["ammo_type"] == 2 :
+		targeting_offfset = 0.0
 	# connect signal from barrel to "shots_fired"
 	$BarrelSlot/Barrel.connect("has_fired",self,"shots_fired")
 	# get Funcref from barrel for turning it on/off (dewperciated?)
@@ -86,6 +88,8 @@ func update_tracked_enemy():
 	if possible_targets.size() != 0:
 		chosen_target = possible_targets[0]
 	tracked_enemy = chosen_target
+	if tracked_enemy != null:
+		tracked_enemy.connect("tree_exiting",self,"update_tracked_enemy")
 	
 	
 	pass

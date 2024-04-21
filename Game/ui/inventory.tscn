@@ -16,10 +16,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="ItemHolder" type="GridContainer" parent="."]
-margin_left = 40.0
+margin_left = 640.0
 margin_top = 720.0
-margin_right = 1240.0
+margin_right = 640.0
 margin_bottom = 720.0
-rect_min_size = Vector2( 1200, 0 )
 size_flags_horizontal = 4
 columns = 24

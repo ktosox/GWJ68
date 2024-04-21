@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-
+var death_effect = preload("res://stuff/puff_of_smoke.tscn")
 
 export var health_max = 30
 
@@ -22,6 +22,9 @@ func get_hit(damage):
 	pass
 
 func die():
+	var smoke = death_effect.instance()
+	smoke.global_position = global_position
+	get_parent().add_child(smoke)
 	queue_free()
 	pass
 

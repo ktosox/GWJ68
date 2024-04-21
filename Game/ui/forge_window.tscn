@@ -6,71 +6,71 @@
 [node name="ForgeWindow" type="ColorRect"]
 anchor_right = 1.156
 anchor_bottom = 0.978
-margin_right = -1119.68
-margin_bottom = -464.16
-rect_min_size = Vector2( 360, 240 )
+margin_right = -1279.68
+margin_bottom = -584.16
+rect_min_size = Vector2( 200, 120 )
 script = ExtResource( 2 )
 
 [node name="SlotLayout" type="HBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = -100.0
+margin_bottom = -26.0
 
 [node name="Base" parent="SlotLayout" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 117.0
-margin_bottom = 140.0
+margin_right = 64.0
+margin_bottom = 94.0
 accepted_item_type = "Base"
 
 [node name="Label" type="Label" parent="SlotLayout/Base"]
 modulate = Color( 0, 0, 0, 1 )
-margin_left = 43.0
-margin_top = 91.0
-margin_right = 83.0
-margin_bottom = 105.0
+margin_left = 17.0
+margin_top = 51.0
+margin_right = 57.0
+margin_bottom = 65.0
 mouse_filter = 1
 text = "BASE"
 
 [node name="Barrel" parent="SlotLayout" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 121.0
-margin_right = 238.0
-margin_bottom = 140.0
+margin_left = 68.0
+margin_right = 132.0
+margin_bottom = 94.0
 accepted_item_type = "Barrel"
 
 [node name="Label2" type="Label" parent="SlotLayout/Barrel"]
 modulate = Color( 0, 0, 0, 1 )
-margin_left = 40.0
-margin_top = 91.0
-margin_right = 88.0
-margin_bottom = 105.0
+margin_left = 16.0
+margin_top = 54.0
+margin_right = 64.0
+margin_bottom = 68.0
 mouse_filter = 1
 text = "BARREL"
 
 [node name="Ammo" parent="SlotLayout" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 242.0
-margin_right = 360.0
-margin_bottom = 140.0
+margin_left = 136.0
+margin_right = 200.0
+margin_bottom = 94.0
 accepted_item_type = "Ammo"
 
 [node name="Label3" type="Label" parent="SlotLayout/Ammo"]
 modulate = Color( 0, 0, 0, 1 )
-margin_left = 37.0
-margin_top = 91.0
-margin_right = 81.0
-margin_bottom = 105.0
+margin_left = 18.0
+margin_top = 51.0
+margin_right = 62.0
+margin_bottom = 65.0
 mouse_filter = 1
 text = "AMMO"
 
 [node name="ForgeButton" type="Button" parent="."]
-margin_left = 124.0
-margin_top = 209.0
-margin_right = 230.0
-margin_bottom = 229.0
+margin_left = 45.0
+margin_top = 98.0
+margin_right = 151.0
+margin_bottom = 118.0
 disabled = true
 text = "FORGE TURRET"
 

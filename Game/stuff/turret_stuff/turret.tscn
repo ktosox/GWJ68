@@ -31,6 +31,7 @@ polygon = PoolVector2Array( 50, 50, 50, -50, -50, -50, -50, 50 )
 [node name="BarrelSlot" type="Node2D" parent="."]
 
 [node name="Barrel" parent="BarrelSlot" instance=ExtResource( 4 )]
+can_shoot = true
 
 [node name="BatteryBar" type="TextureProgress" parent="."]
 margin_left = -49.0
