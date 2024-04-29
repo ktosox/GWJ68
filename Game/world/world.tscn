@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://world/world.gd" type="Script" id=1]
 [ext_resource path="res://stuff/forge_heart.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ui/inventory.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ui/pause_screen.tscn" type="PackedScene" id=4]
 [ext_resource path="res://stuff/enemy_spawner.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ui/build_space.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ui/forge_window.tscn" type="PackedScene" id=8]
@@ -201,6 +202,8 @@ margin_right = 579.0
 margin_bottom = 433.0
 rect_scale = Vector2( 4, 4 )
 text = "TRY AGAIN"
+
+[node name="PauseScreen" parent="UI" instance=ExtResource( 4 )]
 
 [node name="ForgeHeart" parent="." instance=ExtResource( 2 )]
 position = Vector2( 499, 602 )
