@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://stuff/enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://world/elevator.tscn" type="PackedScene" id=2]
+[ext_resource path="res://test/enemy_movement_test.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 600, 50 )
+
+[node name="enemy_movement_test" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="MoveLeft" type="StaticBody2D" parent="."]
+position = Vector2( 1170, 271 )
+collision_layer = 2
+collision_mask = 0
+constant_linear_velocity = Vector2( -70, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MoveLeft"]
+shape = SubResource( 1 )
+
+[node name="Polygon2D2" type="Polygon2D" parent="MoveLeft"]
+polygon = PoolVector2Array( -600, -50, -600, 50, 600, 50, 600, -50 )
+
+[node name="MoveRight" type="StaticBody2D" parent="."]
+position = Vector2( 626, 487 )
+collision_layer = 2
+collision_mask = 0
+constant_linear_velocity = Vector2( 70, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MoveRight"]
+shape = SubResource( 1 )
+
+[node name="Polygon2D" type="Polygon2D" parent="MoveRight"]
+polygon = PoolVector2Array( -600, -50, -600, 50, 600, 50, 600, -50 )
+
+[node name="Enemy" parent="." instance=ExtResource( 1 )]
+position = Vector2( 291, 388 )
+
+[node name="Elevator" parent="." instance=ExtResource( 2 )]
+position = Vector2( 923, 379 )
+
+[node name="Enter" parent="Elevator" index="0"]
+position = Vector2( -2, 17 )
+
+[node name="Exit" parent="Elevator" index="1"]
+position = Vector2( -29, -205 )
+
+[editable path="Elevator"]

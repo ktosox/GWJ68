@@ -5,7 +5,7 @@
 [ext_resource path="res://resources/full_square.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 16, 16 )
+extents = Vector2( 20, 20 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 24, 24 )

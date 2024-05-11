@@ -29,6 +29,21 @@ func die():
 	queue_free()
 	pass
 
+
+func set_elevator_state(state : bool):
+	print(state)
+	if state:
+		set_deferred("applied_force",Vector2(0,-20))
+		gravity_scale = 0
+	else:
+		set_deferred("applied_force",Vector2(0,0))
+		gravity_scale = 1
+	set_deferred("linear_velocity",Vector2.ZERO)
+	
+	$HitBox/CollisionShape2D.set_deferred("disabled",state)
+	call_deferred("set_collision_mask_bit",1,!state)
+	pass
+
 func _on_HitBox_body_entered(body):
 	
 	if body.has_method("get_damage"):
