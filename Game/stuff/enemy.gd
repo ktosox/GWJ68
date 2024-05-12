@@ -31,12 +31,9 @@ func die():
 
 
 func set_elevator_state(state : bool):
-	print(state)
 	if state:
-		set_deferred("applied_force",Vector2(0,-20))
 		gravity_scale = 0
 	else:
-		set_deferred("applied_force",Vector2(0,0))
 		gravity_scale = 1
 	set_deferred("linear_velocity",Vector2.ZERO)
 	
